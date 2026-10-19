@@ -20,7 +20,7 @@
         :root {
             --bg-color: #FDFBF7;       /* Marfil cálido claro */
             --beige: #F4F1EB;          /* Fondo base */
-            --primary: #8A9A86;        /* Verde Salvia (reemplaza al vino) */
+            --primary: #8A9A86;        /* Verde Salvia */
             --dark-primary: #5C6B58;   /* Salvia oscuro para textos */
             --accent: #E8D0D2;         /* Rosa palo */
             --gold: #C5A059;           /* Dorado vibrante */
@@ -115,15 +115,15 @@
         .slide-left.visible { opacity: 1; transform: translateX(0); }
 
         /* ==========================================================================
-           FOTOGRAFÍAS (MARCOS ESTILIZADOS)
+           FOTOGRAFÍAS AUMENTADAS (MARCOS ESTILIZADOS)
            ========================================================================== */
         .photo-arch {
             width: 100%;
-            max-width: 280px;
+            max-width: 340px; /* Tamaño incrementado */
             margin: 20px auto;
-            border-radius: 140px 140px 0 0;
-            border: 6px solid var(--cream);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-radius: 170px 170px 0 0;
+            border: 8px solid var(--cream);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
             overflow: hidden;
             position: relative;
             z-index: 2;
@@ -138,12 +138,12 @@
         }
 
         .photo-circle {
-            width: 220px;
-            height: 220px;
+            width: 280px; /* Tamaño incrementado */
+            height: 280px; /* Tamaño incrementado */
             margin: 30px auto;
             border-radius: 50%;
-            border: 4px solid var(--gold);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 6px solid var(--gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
             overflow: hidden;
             position: relative;
             z-index: 2;
@@ -156,10 +156,10 @@
 
         .photo-square {
             width: 100%;
-            max-width: 300px;
+            max-width: 360px; /* Tamaño incrementado */
             margin: 20px auto;
-            border: 8px solid var(--cream);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 10px solid var(--cream);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border-radius: 8px;
             transform: rotate(-3deg);
             transition: transform 0.4s ease;
@@ -179,7 +179,7 @@
         }
         #envelope-screen::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(92, 107, 88, 0.7); /* Overlay Salvia oscuro */
+            background: rgba(92, 107, 88, 0.75); /* Overlay Salvia oscuro */
             z-index: 1;
         }
         
@@ -277,7 +277,9 @@
         .names-title span { font-family: var(--font-script); font-size: 3.5rem; display: block; margin: 5px 0; color: var(--gold); text-transform: lowercase; animation: pulseGlow 3s infinite alternate;}
         
         .invite-text { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 3px; margin-top: 10px; font-weight: 600; color: var(--text-color); }
-        .invite-boda { font-family: var(--font-script); font-size: 3.8rem; margin-bottom: 5px; color: var(--primary); text-shadow: 1px 1px 3px rgba(0,0,0,0.05);}
+        
+        /* Modificado para decir "Nuestra Boda" */
+        .invite-boda { font-family: var(--font-script); font-size: 3.5rem; margin-bottom: 5px; color: var(--primary); text-shadow: 1px 1px 3px rgba(0,0,0,0.05); line-height: 1.1;}
 
         .save-date-title { font-family: var(--font-title); font-style: italic; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 5px; margin-top: 25px; color: var(--gold); font-weight: 600;}
 
@@ -316,6 +318,7 @@
             #countdown-timer b { font-size: 1rem; }
             .names-title { font-size: 3.5rem; }
             .names-title span { font-size: 3rem; }
+            .invite-boda { font-size: 2.8rem; } /* Ajuste móvil para "Nuestra Boda" */
         }
 
         /* --- Columna 2 (Color Oscuro - Vestimenta y Regalos) --- */
@@ -359,11 +362,26 @@
         .radio-container { display: flex; gap: 20px; }
         .radio-label { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 0.95rem; color: var(--text-color); font-weight: 600;}
 
-        /* Bloque final (Mensaje y Gracias) */
-        .dark-block {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); color: var(--cream); width: 100%;
-            padding: 50px 20px; margin-top: 50px; position: relative; border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 2; overflow: hidden;
+        /* NUEVO DISEÑO DEL BLOQUE FINAL (MENSAJE Y GRACIAS) */
+        .special-message-block {
+            background-color: var(--primary); /* Verde Salvia sólido */
+            width: 100%;
+            padding: 60px 30px;
+            margin-top: 60px;
+            position: relative;
+            border-radius: 20px;
+            border: 2px solid var(--accent); /* Borde rosa palo */
+            box-shadow: 0 15px 40px rgba(92, 107, 88, 0.25);
+            z-index: 2;
+            overflow: hidden;
+            text-align: center;
+        }
+        /* Decoración interior del bloque */
+        .special-message-block::after {
+            content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 1px dashed rgba(232, 208, 210, 0.5); /* Borde interior rosa palo */
+            border-radius: 12px;
+            pointer-events: none;
         }
 
         .footer-note { width: 100%; text-align: center; margin-top: 60px; padding-bottom: 20px; }
@@ -372,7 +390,7 @@
         @media (max-width: 992px) {
             .invitation-container { grid-template-columns: 1fr; border-radius: 0; box-shadow: none;}
             .col-dark { border-radius: 0; padding: 70px 20px; }
-            .dark-block { border-radius: 0; }
+            .special-message-block { border-radius: 0; }
         }
     </style>
 </head>
@@ -406,10 +424,10 @@
             <!-- ================= COLUMNA 1: HERO, ITINERARIO Y FECHA ================= -->
             <div class="column col-light">
 
-                <div class="invite-boda scale-in">Boda</div>
+                <div class="invite-boda scale-in">Nuestra Boda</div>
                 <p class="invite-text slide-right">TENEMOS EL HONOR DE INVITARTE</p>
 
-                <!-- FOTO 1 (HERO) -->
+                <!-- FOTO 1 (HERO) AUMENTADA -->
                 <div class="photo-arch fade-in">
                     <img src="assets/1.jpg" alt="Rodrigo y Sofía">
                 </div>
@@ -434,7 +452,6 @@
                         <div>DOM</div><div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div>
                     </div>
                     <div class="calendar-grid">
-                        <!-- Noviembre 2026 empieza en domingo -->
                         <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
                         <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
                         <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlight">21</div>
@@ -443,7 +460,7 @@
                     </div>
                 </div>
 
-                <!-- FECHA Y CONTADOR EN UN SOLO RENGLÓN -->
+                <!-- FECHA Y CONTADOR -->
                 <div id="countdown-timer" class="fade-in">
                     <span class="date-in-countdown">21&bull;11&bull;2026</span>
                     <span><b id="dias">00</b> DÍAS</span>
@@ -454,11 +471,11 @@
 
                 <button onclick="downloadICS()" class="btn scale-in" style="width: 85%;"><i class="fa-regular fa-calendar-plus"></i> AGREGAR AL CALENDARIO</button>
 
-                <!-- ITINERARIO CON FOTO 2 -->
+                <!-- ITINERARIO CON FOTO 2 AUMENTADA -->
                 <div class="divider fade-in" style="margin-top: 50px;"><i class="fa-solid fa-clock glowing-icon" style="font-size: 0.9rem;"></i></div>
                 <h2 class="fade-in" style="font-size: 2.2rem; letter-spacing: 2px; font-weight: 700; color: var(--primary);">ITINERARIO</h2>
                 
-                <div class="photo-circle fade-in" style="width: 150px; height: 150px;">
+                <div class="photo-circle fade-in">
                     <img src="assets/2.jpg" alt="Detalle boda">
                 </div>
 
@@ -472,7 +489,7 @@
 
             </div>
 
-            <!-- ================= COLUMNA 2: VESTIMENTA Y REGALOS (ZONA DE COLOR SALVIA) ================= -->
+            <!-- ================= COLUMNA 2: VESTIMENTA Y REGALOS ================= -->
             <div class="column col-dark" style="justify-content: center;">
 
                 <!-- CÓDIGO DE VESTIMENTA -->
@@ -483,7 +500,7 @@
                     <p style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--gold); margin-top: 15px; letter-spacing: 1px; font-weight: 500; line-height: 1.5;">Nos encantaría verte lucir increíble en nuestro gran día.<br><br><span style="color: var(--cream); font-style: italic; font-weight: 400;">Les pedimos amablemente reservar el color blanco y sus tonalidades exclusivamente para la novia.</span></p>
                 </div>
 
-                <!-- FOTO 3 -->
+                <!-- FOTO 3 AUMENTADA -->
                 <div class="photo-square fade-in">
                     <img src="assets/3.jpg" alt="Pareja">
                 </div>
@@ -514,7 +531,7 @@
 
                 <div class="venue-name scale-in">Hotel Los Cedros Uayamón</div>
                 
-                <div class="slide-left" style="background-color: rgba(138,154,134,0.1); padding: 15px 30px; border-radius: 50px; border: 1px solid var(--primary); margin-bottom: 20px; display: inline-block;">
+                <div class="slide-left" style="background-color: rgba(232,208,210,0.25); padding: 15px 30px; border-radius: 50px; border: 1px solid var(--accent); margin-bottom: 20px; display: inline-block;">
                     <p style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 700; color: var(--dark-primary); letter-spacing: 2px; margin: 0;">4:30 P.M.</p>
                 </div>
                 
@@ -524,8 +541,8 @@
 
                 <a href="https://maps.app.goo.gl/Uzny2YCqTMF7nSM18?g_st=iw" target="_blank" class="btn scale-in" style="width: 100%;"><i class="fa-solid fa-location-arrow"></i> CÓMO LLEGAR</a>
 
-                <!-- FOTO 4 ANTES DEL RSVP -->
-                <div class="photo-arch fade-in" style="margin-top: 50px; max-width: 200px; border-radius: 100px 100px 0 0;">
+                <!-- FOTO 4 AUMENTADA ANTES DEL RSVP -->
+                <div class="photo-arch fade-in" style="margin-top: 50px; max-width: 260px; border-radius: 130px 130px 0 0;">
                     <img src="assets/4.jpg" alt="Sofía y Rodrigo">
                 </div>
 
@@ -587,14 +604,16 @@
                     </div>
                 </div>
 
-                <!-- MENSAJE ESPECIAL Y GRACIAS -->
-                <div class="dark-block fade-in scale-in" style="margin-top: 60px; text-align: center;">
-                    <p style="font-size: 1.35rem; margin-bottom: 25px; font-style: italic; color: var(--cream); font-family: var(--font-body); line-height: 1.6;">
+                <!-- NUEVO DISEÑO: MENSAJE ESPECIAL Y GRACIAS -->
+                <div class="special-message-block fade-in scale-in">
+                    <p style="font-size: 1.35rem; margin-bottom: 25px; font-style: italic; color: var(--bg-color); font-family: var(--font-body); line-height: 1.6; position: relative; z-index: 2;">
                         "Los mejores momentos de la vida merecen ser compartidos. Gracias por ser parte de este día tan especial."
                     </p>
-                    <div class="divider" style="margin: 30px auto; width: 50%;"><i class="fa-solid fa-heart" style="color: var(--cream);"></i></div>
-                    <h3 class="shimmer-text" style="font-family: var(--font-script); font-size: 4.5rem; margin-bottom: 10px; background-image: linear-gradient(90deg, var(--gold) 0%, #fff 30%, var(--cream) 50%, #fff 70%, var(--gold) 100%);">¡Gracias!</h3>
-                    <div style="font-family: var(--font-sans); letter-spacing: 6px; font-size: 1.1rem; text-transform: uppercase; color: var(--gold); font-weight: 700;">Rodrigo & Sofía</div>
+                    <div class="divider" style="margin: 30px auto; width: 50%; position: relative; z-index: 2;">
+                        <i class="fa-solid fa-heart" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-script); font-size: 4.5rem; margin-bottom: 10px; color: var(--gold); position: relative; z-index: 2; text-shadow: 2px 2px 5px rgba(0,0,0,0.1);">¡Gracias!</h3>
+                    <div style="font-family: var(--font-sans); letter-spacing: 6px; font-size: 1.1rem; text-transform: uppercase; color: var(--cream); font-weight: 700; position: relative; z-index: 2;">Rodrigo & Sofía</div>
                 </div>
 
                 <!-- FOOTER BRANDING -->
@@ -794,3 +813,4 @@
     </script>
 </body>
 </html>
+```<FollowUp label="¿Quieres que integremos el sistema de Mercado Pago en Invytia?" query="¿Cómo integro Mercado Pago Checkout Pro para procesar los cobros de Invytia a mis clientes?"/>
