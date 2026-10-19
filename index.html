@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Rodrigo y Sofía - 2026</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES Y ESTILOS BASE (PALETA: BLANCO, MARFIL, ROSA PALO, SALVIA, DORADO)
+           ========================================================================== */
+        :root {
+            --bg-color: #FDFBF7;       /* Marfil cálido claro */
+            --beige: #F4F1EB;          /* Fondo base */
+            --primary: #8A9A86;        /* Verde Salvia (reemplaza al vino) */
+            --dark-primary: #5C6B58;   /* Salvia oscuro para textos */
+            --accent: #E8D0D2;         /* Rosa palo */
+            --gold: #C5A059;           /* Dorado vibrante */
+            --light-gold: #E5C78B;     /* Dorado claro para brillos */
+            --cream: #FFFFFF;          /* Blanco */
+            --text-color: #4A4A4A;     /* Gris oscuro cálido para lectura */
+            
+            --font-title: 'Playfair Display', serif;
+            --font-script: 'Great Vibes', cursive;
+            --font-body: 'Lora', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--beige);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+
+        /* ==========================================================================
+           ANIMACIONES GLOBALES Y EFECTOS ESPECIALES
+           ========================================================================== */
+        @keyframes shimmerText {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 5px rgba(197,160,89,0.3); transform: scale(1); }
+            50% { text-shadow: 0 0 25px rgba(197,160,89,0.9), 0 0 10px rgba(197,160,89,0.5); transform: scale(1.05); }
+            100% { text-shadow: 0 0 5px rgba(197,160,89,0.3); transform: scale(1); }
+        }
+
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes expandLine {
+            0% { width: 0; opacity: 0; }
+          100% { width: 60px; opacity: 1; }
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--gold) 30%, #fff 50%, var(--gold) 70%, var(--primary) 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmerText 4s linear infinite;
+        }
+
+        .glowing-icon {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+            color: var(--gold);
+        }
+
+        /* --- Transiciones de aparición --- */
+        .fade-in {
+            opacity: 0; 
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        .scale-in {
+            opacity: 0; transform: scale(0.85);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+        
+        .slide-right {
+            opacity: 0; transform: translateX(-50px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+        .slide-left {
+            opacity: 0; transform: translateX(50px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+        /* ==========================================================================
+           FOTOGRAFÍAS (MARCOS ESTILIZADOS)
+           ========================================================================== */
+        .photo-arch {
+            width: 100%;
+            max-width: 280px;
+            margin: 20px auto;
+            border-radius: 140px 140px 0 0;
+            border: 6px solid var(--cream);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+        .photo-arch img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .photo-arch:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-circle {
+            width: 220px;
+            height: 220px;
+            margin: 30px auto;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-square {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            border: 8px solid var(--cream);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            transform: rotate(-3deg);
+            transition: transform 0.4s ease;
+            overflow: hidden;
+        }
+        .photo-square:hover { transform: rotate(0deg) scale(1.02); }
+        .photo-square img { width: 100%; display: block; }
+
+        /* ==========================================================================
+           PANTALLA DEL SOBRE ANIMADO
+           ========================================================================== */
+        #envelope-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: url('assets/5.jpg') center/cover no-repeat;
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        #envelope-screen::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(92, 107, 88, 0.7); /* Overlay Salvia oscuro */
+            z-index: 1;
+        }
+        
+        .envelope-wrapper { position: relative; width: 340px; height: 230px; z-index: 2; cursor: pointer; perspective: 1000px; transition: transform 0.3s ease; animation: floatEffect 4s infinite ease-in-out;}
+        .envelope-wrapper:hover { transform: scale(1.05); }
+        .envelope-body { position: absolute; inset: 0; background-color: var(--cream); border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 40px rgba(197,160,89,0.4); overflow: hidden; }
+        .envelope-front { position: absolute; inset: 0; z-index: 3; border-left: 170px solid #F8F5F0; border-right: 170px solid #F8F5F0; border-bottom: 120px solid #EAE4D9; border-top: 110px solid transparent; pointer-events: none; }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 170px solid transparent; border-right: 170px solid transparent; border-top: 130px solid var(--cream); transform-origin: top; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); }
+        
+        /* SELLO CENTRADO */
+        .seal { 
+            position: absolute; 
+            top: calc(130px - 32.5px); 
+            left: calc(50% - 32.5px); 
+            width: 65px; 
+            height: 65px; 
+            background: radial-gradient(circle, var(--gold) 40%, #A37F40 100%); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--white); 
+            font-family: var(--font-title); 
+            font-size: 1.8rem;
+            font-style: italic;
+            font-weight: 700;
+            z-index: 5; 
+            transition: opacity 0.3s ease; 
+            box-shadow: 0 0 20px rgba(197,160,89,0.9), inset 0 0 10px rgba(255,255,255,0.4); 
+            border: 2px solid var(--light-gold);
+        }
+        
+        .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; filter: none; }
+        .envelope-wrapper.open .seal { opacity: 0; }
+        .envelope-text { position: relative; z-index: 2; color: var(--gold); font-family: var(--font-sans); font-size: 1rem; font-weight: 600; letter-spacing: 3px; margin-top: 40px; text-transform: uppercase; animation: pulseGlow 2s infinite alternate; text-shadow: 0px 2px 10px rgba(0,0,0,0.8);}
+
+        /* ==========================================================================
+           BOTÓN DE AUDIO FLOTANTE
+           ========================================================================== */
+        #audio-btn {
+            position: fixed; bottom: 25px; right: 25px; background-color: var(--gold); color: var(--white);
+            border: none; border-radius: 50%; width: 55px; height: 55px; font-size: 1.2rem;
+            cursor: pointer; z-index: 9000; box-shadow: 0 0 20px rgba(197,160,89,0.6);
+            transition: transform 0.3s ease, background-color 0.3s ease; display: none; align-items: center; justify-content: center;
+        }
+        #audio-btn:hover { transform: scale(1.1); background-color: var(--primary); }
+
+        /* ==========================================================================
+           TRÍPTICO Y ESTRUCTURA GENERAL
+           ========================================================================== */
+        #invitation-content { display: flex; justify-content: center; padding: 20px 10px; visibility: hidden; opacity: 0; transition: opacity 1.5s ease; }
+        .invitation-container { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1200px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-radius: 8px; overflow: hidden; }
+
+        .column { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; text-align: center; position: relative; }
+        
+        /* SECCIONES DE COLOR */
+        .col-light { background-color: var(--bg-color); background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); color: var(--text-color); }
+        .col-dark { background-color: var(--primary); background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); color: var(--cream); box-shadow: inset 0 0 40px rgba(0,0,0,0.2); z-index: 2; position: relative; overflow: hidden;}
+        
+        .col-dark::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(232,208,210,0.15) 0%, transparent 50%, rgba(92,107,88,0.8) 100%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Tipografías y Divisores */
+        h1, h2, h3 { font-family: var(--font-title); font-weight: 400; position: relative; z-index: 2;}
+        .script-text { font-family: var(--font-script); color: var(--primary); }
+        
+        .divider { display: flex; align-items: center; justify-content: center; margin: 25px 0; color: var(--gold); position: relative; z-index: 2;}
+        .divider::before, .divider::after { content: ""; height: 1px; background-color: var(--gold); margin: 0 15px; width: 0; box-shadow: 0 0 5px var(--gold); }
+        .divider.visible::before, .divider.visible::after { animation: expandLine 1.5s ease forwards; }
+
+        /* Botón con Destello */
+        .btn {
+            position: relative; display: inline-block; background-color: var(--primary); color: var(--cream);
+            padding: 15px 25px; text-decoration: none; font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 1px;
+            border-radius: 6px; margin-top: 15px; border: 1px solid rgba(197,160,89,0.4); cursor: pointer; overflow: hidden; transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 2;
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); animation: buttonShine 3s infinite;
+        }
+        @keyframes buttonShine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+        .btn:hover { background-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(197,160,89,0.4); color: var(--cream); font-weight: 600;}
+
+        /* ==========================================================================
+           ESTILOS ESPECÍFICOS DE COLUMNAS
+           ========================================================================== */
+        
+        /* --- Columna 1 (Hero) --- */
+        .names-title { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; margin-top: 10px; z-index: 1; position: relative; font-weight: 600; color: var(--dark-primary);}
+        .names-title span { font-family: var(--font-script); font-size: 3.5rem; display: block; margin: 5px 0; color: var(--gold); text-transform: lowercase; animation: pulseGlow 3s infinite alternate;}
+        
+        .invite-text { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 3px; margin-top: 10px; font-weight: 600; color: var(--text-color); }
+        .invite-boda { font-family: var(--font-script); font-size: 3.8rem; margin-bottom: 5px; color: var(--primary); text-shadow: 1px 1px 3px rgba(0,0,0,0.05);}
+
+        .save-date-title { font-family: var(--font-title); font-style: italic; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 5px; margin-top: 25px; color: var(--gold); font-weight: 600;}
+
+        /* Calendario (Noviembre 2026) */
+        .calendar-wrapper { width: 100%; max-width: 320px; margin: 25px auto; font-family: var(--font-sans); font-size: 0.9rem; position: relative; z-index: 2;}
+        .calendar-month { text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; font-weight: 700; color: var(--primary);}
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+        .calendar-header { font-weight: 700; color: var(--gold); margin-bottom: 5px; font-size: 0.8rem; }
+        .calendar-day { padding: 8px 0; color: var(--text-color); font-weight: 500; transition: all 0.3s;}
+        .calendar-day.highlight { background: radial-gradient(circle, var(--gold) 0%, #A37F40 100%); color: var(--white); border-radius: 50%; font-weight: bold; box-shadow: 0 0 15px rgba(197,160,89,0.6); animation: pulseGlow 2s infinite alternate; transform: scale(1.1);}
+
+        /* Contador y Fecha */
+        #countdown-timer {
+            font-family: var(--font-sans); font-size: 0.70rem; letter-spacing: 1px;
+            color: var(--dark-primary); font-weight: 700;
+            margin: 25px 0 35px 0; padding: 20px 10px; width: 100%;
+            background: linear-gradient(to right, transparent, rgba(138,154,134,0.15), transparent);
+            border-top: 1px solid rgba(138,154,134,0.3); border-bottom: 1px solid rgba(138,154,134,0.3);
+            display: flex; justify-content: center; align-items: center; white-space: nowrap; gap: 8px;
+            position: relative; z-index: 2;
+        }
+        #countdown-timer b { font-size: 1.3rem; color: var(--primary); margin-right: 2px; display: inline-block;}
+        .date-in-countdown { font-family: var(--font-title); font-size: 1.6rem; margin-right: 15px; font-style: italic; font-weight: 700; color: var(--gold); }
+
+        /* Itinerario */
+        .timeline { width: 100%; text-align: left; margin: 30px 0; padding: 0 20px; }
+        .timeline-item { position: relative; padding-left: 30px; margin-bottom: 20px; font-family: var(--font-sans); font-size: 0.9rem; color: var(--text-color); }
+        .timeline-item::before { content: ''; position: absolute; left: 0; top: 5px; width: 10px; height: 10px; background-color: var(--gold); border-radius: 50%; box-shadow: 0 0 8px rgba(197,160,89,0.6); }
+        .timeline-item::after { content: ''; position: absolute; left: 4px; top: 20px; width: 2px; height: calc(100% + 5px); background-color: rgba(197,160,89,0.3); }
+        .timeline-item:last-child::after { display: none; }
+        .timeline-time { font-weight: 700; color: var(--primary); font-size: 1rem; margin-bottom: 3px; display: block;}
+
+        @media (max-width: 480px) {
+            #countdown-timer { font-size: 0.55rem; padding: 15px 2px; gap: 4px; }
+            #countdown-timer .date-in-countdown { font-size: 1.2rem !important; margin-right: 5px !important; }
+            #countdown-timer b { font-size: 1rem; }
+            .names-title { font-size: 3.5rem; }
+            .names-title span { font-size: 3rem; }
+        }
+
+        /* --- Columna 2 (Color Oscuro - Vestimenta y Regalos) --- */
+        .col-dark h2 { color: var(--gold); }
+        .dress-code-title { font-family: var(--font-sans); font-size: 1rem; letter-spacing: 3px; margin-bottom: 10px; color: var(--gold); font-weight: 700; text-transform: uppercase;}
+        
+        .dark-box {
+            background: rgba(255,255,255,0.05); padding: 50px 20px; border-radius: 16px; 
+            border: 1px solid rgba(255,255,255,0.15); width: 100%; position: relative; z-index: 2;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
+            margin-bottom: 40px; transition: transform 0.4s ease;
+        }
+        .dark-box:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 0 20px rgba(197,160,89,0.1); }
+
+        /* --- Columna 3 (Recepción y RSVP) --- */
+        .venue-name { font-family: var(--font-script); font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.05);}
+        .map-container { width: 100%; height: 300px; margin: 25px 0; border-radius: 12px; overflow: hidden; border: 4px solid var(--cream); box-shadow: 0 15px 30px rgba(0,0,0,0.08); transition: transform 0.4s; position: relative; z-index: 2;}
+        .map-container:hover { transform: scale(1.03); box-shadow: 0 20px 40px rgba(197,160,89,0.2);}
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* GLASSMORPHISM CON BRILLO */
+        .glass-panel {
+            width: 100%; padding: 40px 25px; position: relative; z-index: 2;
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; margin-top: 15px;
+            box-shadow: 0 15px 35px rgba(138, 154, 134, 0.1), inset 0 0 20px rgba(255,255,255,0.7);
+            transition: transform 0.4s ease;
+        }
+        .glass-panel:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15), inset 0 0 20px rgba(255,255,255,0.9);}
+
+        /* Formularios */
+        .form-group { margin-bottom: 20px; text-align: left; width: 100%; }
+        .form-group label { display: block; font-family: var(--font-sans); font-size: 0.85rem; color: var(--dark-primary); margin-bottom: 8px; letter-spacing: 1px; font-weight: 700;}
+        .form-group input[type="text"], .form-group select, .form-group textarea {
+            width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.9); border: 2px solid transparent;
+            border-radius: 8px; font-family: var(--font-body); font-size: 1rem; color: var(--text-color); outline: none; transition: all 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .form-group input[type="text"]:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(138, 154, 134, 0.2); background: #ffffff; transform: translateY(-2px);}
+        
+        .radio-container { display: flex; gap: 20px; }
+        .radio-label { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 0.95rem; color: var(--text-color); font-weight: 600;}
+
+        /* Bloque final (Mensaje y Gracias) */
+        .dark-block {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); color: var(--cream); width: 100%;
+            padding: 50px 20px; margin-top: 50px; position: relative; border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 2; overflow: hidden;
+        }
+
+        .footer-note { width: 100%; text-align: center; margin-top: 60px; padding-bottom: 20px; }
+        .footer-note p { font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; font-weight: 600; opacity: 0.8; }
+
+        @media (max-width: 992px) {
+            .invitation-container { grid-template-columns: 1fr; border-radius: 0; box-shadow: none;}
+            .col-dark { border-radius: 0; padding: 70px 20px; }
+            .dark-block { border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO (Oculto) -->
+    <audio id="bg-audio" loop>
+        <source src="assets/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- PANTALLA DEL SOBRE CON FOTO 5 -->
+    <div id="envelope-screen">
+        <div class="envelope-wrapper" onclick="openInvitation()">
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
+            <div class="seal glowing-icon">R&S</div>
+            <div class="envelope-body"></div>
+        </div>
+        <div class="envelope-text">Toca para abrir</div>
+    </div>
+
+    <!-- BOTÓN DE MÚSICA STICKY -->
+    <button id="audio-btn" onclick="toggleAudio()">
+        <i class="fa-solid fa-music" id="audio-icon"></i>
+    </button>
+
+    <!-- CONTENEDOR TRÍPTICO -->
+    <div id="invitation-content">
+        <div class="invitation-container">
+            
+            <!-- ================= COLUMNA 1: HERO, ITINERARIO Y FECHA ================= -->
+            <div class="column col-light">
+
+                <div class="invite-boda scale-in">Boda</div>
+                <p class="invite-text slide-right">TENEMOS EL HONOR DE INVITARTE</p>
+
+                <!-- FOTO 1 (HERO) -->
+                <div class="photo-arch fade-in">
+                    <img src="assets/1.jpg" alt="Rodrigo y Sofía">
+                </div>
+
+                <h1 class="names-title scale-in shimmer-text">
+                    RODRIGO
+                    <span>&amp;</span>
+                    SOFÍA
+                </h1>
+
+                <div class="divider fade-in"><i class="fa-solid fa-leaf glowing-icon" style="font-size: 0.9rem;"></i></div>
+
+                <div class="save-date scale-in">
+                    <p class="save-date-title">RESERVA LA FECHA</p>
+                    <p style="font-family: var(--font-sans); font-size: 0.9rem; letter-spacing: 2px; color: var(--primary); margin-top: 5px; font-weight: 700;">SÁBADO</p>
+                </div>
+
+                <!-- Calendario Noviembre 2026 -->
+                <div class="calendar-wrapper scale-in">
+                    <div class="calendar-month">Noviembre 2026</div>
+                    <div class="calendar-grid calendar-header">
+                        <div>DOM</div><div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div>
+                    </div>
+                    <div class="calendar-grid">
+                        <!-- Noviembre 2026 empieza en domingo -->
+                        <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlight">21</div>
+                        <div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div><div class="calendar-day">30</div><div></div><div></div><div></div><div></div><div></div>
+                    </div>
+                </div>
+
+                <!-- FECHA Y CONTADOR EN UN SOLO RENGLÓN -->
+                <div id="countdown-timer" class="fade-in">
+                    <span class="date-in-countdown">21&bull;11&bull;2026</span>
+                    <span><b id="dias">00</b> DÍAS</span>
+                    <span><b id="horas">00</b> HRS</span>
+                    <span><b id="minutos">00</b> MIN</span>
+                    <span><b id="segundos">00</b> SEG</span>
+                </div>
+
+                <button onclick="downloadICS()" class="btn scale-in" style="width: 85%;"><i class="fa-regular fa-calendar-plus"></i> AGREGAR AL CALENDARIO</button>
+
+                <!-- ITINERARIO CON FOTO 2 -->
+                <div class="divider fade-in" style="margin-top: 50px;"><i class="fa-solid fa-clock glowing-icon" style="font-size: 0.9rem;"></i></div>
+                <h2 class="fade-in" style="font-size: 2.2rem; letter-spacing: 2px; font-weight: 700; color: var(--primary);">ITINERARIO</h2>
+                
+                <div class="photo-circle fade-in" style="width: 150px; height: 150px;">
+                    <img src="assets/2.jpg" alt="Detalle boda">
+                </div>
+
+                <div class="timeline scale-in">
+                    <div class="timeline-item"><span class="timeline-time">4:30 pm</span>Recepción</div>
+                    <div class="timeline-item"><span class="timeline-time">5:00 pm</span>Ceremonia civil</div>
+                    <div class="timeline-item"><span class="timeline-time">5:30 pm</span>Cóctel en el jardín</div>
+                    <div class="timeline-item"><span class="timeline-time">6:00 pm</span>Recepción en el salón</div>
+                    <div class="timeline-item"><span class="timeline-time">8:00 pm</span>Banquete</div>
+                </div>
+
+            </div>
+
+            <!-- ================= COLUMNA 2: VESTIMENTA Y REGALOS (ZONA DE COLOR SALVIA) ================= -->
+            <div class="column col-dark" style="justify-content: center;">
+
+                <!-- CÓDIGO DE VESTIMENTA -->
+                <div class="dark-box slide-left">
+                    <p class="dress-code-title">CÓDIGO DE VESTIMENTA</p>
+                    <div class="divider"><i class="fa-solid fa-user-tie glowing-icon" style="font-size: 1rem;"></i></div>
+                    <p style="font-family: var(--font-title); font-size: 3rem; font-style: italic; letter-spacing: 2px; color: var(--cream); margin-top: 15px;">Formal Cocktail</p>
+                    <p style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--gold); margin-top: 15px; letter-spacing: 1px; font-weight: 500; line-height: 1.5;">Nos encantaría verte lucir increíble en nuestro gran día.<br><br><span style="color: var(--cream); font-style: italic; font-weight: 400;">Les pedimos amablemente reservar el color blanco y sus tonalidades exclusivamente para la novia.</span></p>
+                </div>
+
+                <!-- FOTO 3 -->
+                <div class="photo-square fade-in">
+                    <img src="assets/3.jpg" alt="Pareja">
+                </div>
+
+                <!-- MESA DE REGALOS LIVERPOOL -->
+                <div class="dark-box slide-right" style="margin-top: 20px;">
+                    <p class="dress-code-title" style="margin-top: 0;">MESA DE REGALOS</p>
+                    <div class="divider"><i class="fa-solid fa-gift glowing-icon" style="font-size: 1rem;"></i></div>
+                    <p style="font-family: var(--font-title); font-size: 2.5rem; font-style: italic; margin-bottom: 10px; margin-top: 15px; color: var(--cream);">Liverpool</p>
+                    <p style="font-family: var(--font-sans); font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; color: var(--gold); margin-bottom: 20px;">
+                        Evento: 60055498
+                    </p>
+                    <p style="font-family: var(--font-sans); font-size: 0.95rem; letter-spacing: 1px; color: var(--cream); opacity: 0.9; line-height: 1.6; margin-bottom: 20px;">
+                        El mejor regalo es su presencia, pero si desean hacernos un presente, hemos preparado esta lista.
+                    </p>
+                    <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60055498" target="_blank" class="btn" style="background-color: var(--cream); color: var(--dark-primary); width: 100%; font-weight: bold;">
+                        <i class="fa-solid fa-bag-shopping"></i> VER MESA DE REGALOS
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- ================= COLUMNA 3: RECEPCIÓN Y RSVP ================= -->
+            <div class="column col-light">
+
+                <h2 class="fade-in" style="font-size: 2.5rem; letter-spacing: 3px; font-weight: 700;">RECEPCIÓN</h2>
+                <div class="divider fade-in"><i class="fa-solid fa-map-location-dot glowing-icon" style="font-size: 0.9rem;"></i></div>
+
+                <div class="venue-name scale-in">Hotel Los Cedros Uayamón</div>
+                
+                <div class="slide-left" style="background-color: rgba(138,154,134,0.1); padding: 15px 30px; border-radius: 50px; border: 1px solid var(--primary); margin-bottom: 20px; display: inline-block;">
+                    <p style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 700; color: var(--dark-primary); letter-spacing: 2px; margin: 0;">4:30 P.M.</p>
+                </div>
+                
+                <div class="map-container fade-in">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3757.266711283286!2d-90.42164670000001!3d19.658623499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f8267741e6b867%3A0xc53bf28dc903aa82!2sHotel%20Los%20Cedros%20de%20Uayam%C3%B3n!5e0!3m2!1ses-419!2smx!4v1792369287259!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+
+                <a href="https://maps.app.goo.gl/Uzny2YCqTMF7nSM18?g_st=iw" target="_blank" class="btn scale-in" style="width: 100%;"><i class="fa-solid fa-location-arrow"></i> CÓMO LLEGAR</a>
+
+                <!-- FOTO 4 ANTES DEL RSVP -->
+                <div class="photo-arch fade-in" style="margin-top: 50px; max-width: 200px; border-radius: 100px 100px 0 0;">
+                    <img src="assets/4.jpg" alt="Sofía y Rodrigo">
+                </div>
+
+                <!-- GLASSMORPHISM: ASISTENCIA -->
+                <div class="fade-in" style="width: 100%; margin-top: 30px;">
+                    <h2 style="font-size: 2.2rem; letter-spacing: 3px; font-weight: 700;">ASISTENCIA</h2>
+                    <div class="divider"><i class="fa-solid fa-envelope-open-text glowing-icon" style="font-size: 0.9rem;"></i></div>
+                    
+                    <div class="glass-panel scale-in">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <p style="font-family: var(--font-title); font-style: italic; font-size: 1.15rem; color: var(--primary); letter-spacing: 1px;">
+                                Por favor confirma tu asistencia antes del<br>
+                                <strong style="font-family: var(--font-sans); font-style: normal; font-size: 0.85rem; letter-spacing: 3px; color: var(--dark-primary); display: block; margin-top: 8px;">01 DE NOVIEMBRE DE 2026</strong>
+                            </p>
+                        </div>
+
+                        <div id="paseSection" style="display: none; text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(138,154,134,0.3); padding-bottom: 25px;">
+                            <p style="font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 3px; color: var(--primary); margin-bottom: 5px; font-weight: 700;">PASE DE ENTRADA</p>
+                            <h2 id="guestNameDisplay" style="font-size: 2.4rem; margin: 10px 0; color: var(--dark-primary);">Invitado Especial</h2>
+                            <p style="font-size: 1.15rem; font-family: var(--font-body); color: var(--text-color);">Lugares reservados: <span id="guestPassesDisplay" style="font-weight: bold; color: var(--gold); font-size: 1.8rem; text-shadow: 0 0 15px rgba(197,160,89,0.6);">2</span></p>
+                        </div>
+
+                        <form id="rsvpForm">
+                            <div id="genericRSVPInputs">
+                                <div class="form-group"><label>Nombre(s):</label><input type="text" id="rsvpNombre" placeholder="Ej. Juan"></div>
+                                <div class="form-group"><label>Apellido(s):</label><input type="text" id="rsvpApellido" placeholder="Ej. Pérez"></div>
+                                <div class="form-group">
+                                    <label>¿Asistirás?:</label>
+                                    <select id="rsvpAsistencia">
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="¡Sí, ahí estaré!">¡Sí, ahí estaré!</option>
+                                        <option value="Lamentablemente no podré asistir">Lamentablemente no podré asistir</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="dynamicGuestList" style="width: 100%; text-align: left;"></div>
+                            <button type="button" onclick="sendRSVP()" class="btn" style="width: 100%; background-color: var(--primary); color: white; font-size: 1.05rem; font-weight: bold; padding: 18px; border-radius: 8px;">
+                                <i class="fa-brands fa-whatsapp"></i> CONFIRMAR
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- GLASSMORPHISM: BUENOS DESEOS -->
+                <div class="fade-in" style="width: 100%; margin-top: 50px;">
+                    <h2 style="font-size: 2.2rem; letter-spacing: 3px; font-weight: 700;">LIBRO DE FIRMAS</h2>
+                    <div class="divider"><i class="fa-solid fa-pen-fancy glowing-icon" style="font-size: 0.9rem;"></i></div>
+                    
+                    <div class="glass-panel scale-in" style="margin-top: 10px;">
+                        <form id="wishesForm">
+                            <div class="form-group">
+                                <label>Escribe un mensaje para los novios:</label>
+                                <textarea id="wishesText" rows="4" required placeholder="¡Felicidades en esta nueva etapa!"></textarea>
+                            </div>
+                            <button type="button" onclick="sendWishes()" class="btn" style="width: 100%; background-color: var(--gold); color: var(--cream); font-size: 1.05rem; font-weight: bold; padding: 18px; border-radius: 8px;">
+                                <i class="fa-brands fa-whatsapp"></i> ENVIAR MENSAJE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- MENSAJE ESPECIAL Y GRACIAS -->
+                <div class="dark-block fade-in scale-in" style="margin-top: 60px; text-align: center;">
+                    <p style="font-size: 1.35rem; margin-bottom: 25px; font-style: italic; color: var(--cream); font-family: var(--font-body); line-height: 1.6;">
+                        "Los mejores momentos de la vida merecen ser compartidos. Gracias por ser parte de este día tan especial."
+                    </p>
+                    <div class="divider" style="margin: 30px auto; width: 50%;"><i class="fa-solid fa-heart" style="color: var(--cream);"></i></div>
+                    <h3 class="shimmer-text" style="font-family: var(--font-script); font-size: 4.5rem; margin-bottom: 10px; background-image: linear-gradient(90deg, var(--gold) 0%, #fff 30%, var(--cream) 50%, #fff 70%, var(--gold) 100%);">¡Gracias!</h3>
+                    <div style="font-family: var(--font-sans); letter-spacing: 6px; font-size: 1.1rem; text-transform: uppercase; color: var(--gold); font-weight: 700;">Rodrigo & Sofía</div>
+                </div>
+
+                <!-- FOOTER BRANDING -->
+                <div class="footer-note fade-in">
+                    <p>Invytia Essential Design</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SCRIPTS
+         ========================================================================== -->
+    <script>
+        // --- 1. SOBRE ANIMADO Y AUDIO ---
+        const audio = document.getElementById('bg-audio');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioBtn = document.getElementById('audio-btn');
+        let envelopeOpened = false;
+
+        function openInvitation() {
+            if (envelopeOpened) return; 
+            envelopeOpened = true;
+
+            const envelopeScreen = document.getElementById('envelope-screen');
+            const envelopeWrapper = document.querySelector('.envelope-wrapper');
+            const invitationContent = document.getElementById('invitation-content');
+            
+            envelopeWrapper.classList.add('open');
+            
+            audio.play().then(() => {
+                audioIcon.classList.remove('fa-music');
+                audioIcon.classList.add('fa-pause');
+            }).catch(e => console.log("Auto-play prevenido", e));
+
+            setTimeout(() => {
+                envelopeScreen.style.opacity = '0';
+                invitationContent.style.visibility = 'visible';
+                invitationContent.style.opacity = '1';
+                audioBtn.style.display = 'flex'; 
+                
+                setTimeout(() => { envelopeScreen.style.display = 'none'; }, 1000);
+            }, 800); 
+        }
+
+        function toggleAudio() {
+            if(audio.paused) {
+                audio.play();
+                audioIcon.classList.remove('fa-music'); 
+                audioIcon.classList.add('fa-pause');
+            } else {
+                audio.pause();
+                audioIcon.classList.remove('fa-pause'); 
+                audioIcon.classList.add('fa-music');
+            }
+        }
+
+        // --- 2. WHATSAPP (NÚMERO ASIGNADO) ---
+        const telefonoWhatsApp = "12534320688";
+
+        // --- 3. INICIALIZACIÓN ---
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // Observer para animaciones
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in, .divider, .scale-in, .slide-left, .slide-right').forEach(el => observer.observe(el));
+
+            // Lógica de URL Params (Invitados dinámicos)
+            const urlParams = new URLSearchParams(window.location.search);
+            const invitado = urlParams.get('invitado');
+            const pases = urlParams.get('pases');
+            const nombresStr = urlParams.get('nombres');
+
+            if (invitado && pases) {
+                document.getElementById('paseSection').style.display = 'block';
+                document.getElementById('guestNameDisplay').textContent = invitado;
+                document.getElementById('guestPassesDisplay').textContent = pases;
+            }
+
+            if (nombresStr) {
+                const nombres = nombresStr.split(',');
+                const listContainer = document.getElementById('dynamicGuestList');
+                let html = `<label style="font-family: var(--font-sans); font-size: 0.95rem; color: var(--dark-primary); margin-bottom: 15px; display: block; font-weight: 700;">Selecciona quiénes asisten:</label>`;
+                
+                nombres.forEach((nombre, index) => {
+                    html += `
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed rgba(138,154,134,0.3);">
+                        <span style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; color: var(--text-color); flex: 1; min-width: 120px;">${nombre.trim()}</span>
+                        <div class="radio-container" style="flex-shrink: 0;">
+                            <label class="radio-label"><input type="radio" name="asistencia_${index}" value="Sí"> Sí</label>
+                            <label class="radio-label"><input type="radio" name="asistencia_${index}" value="No"> No</label>
+                        </div>
+                    </div>`;
+                });
+                
+                listContainer.innerHTML = html;
+                document.getElementById('genericRSVPInputs').style.display = 'none';
+            }
+
+            // Cuenta Regresiva: 21 de Noviembre de 2026, 16:30 hrs
+            const countDownDate = new Date("Nov 21, 2026 16:30:00").getTime();
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown-timer").innerHTML = "<span class='glowing-icon' style='font-size: 1.8rem; text-align: center; width: 100%; color: var(--gold);'>¡HOY ES EL GRAN DÍA!</span>";
+                    return;
+                }
+                
+                const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("dias").innerHTML = d < 10 ? "0" + d : d;
+                document.getElementById("horas").innerHTML = h < 10 ? "0" + h : h;
+                document.getElementById("minutos").innerHTML = m < 10 ? "0" + m : m;
+                document.getElementById("segundos").innerHTML = s < 10 ? "0" + s : s;
+            }, 1000);
+        });
+
+        // --- 4. RSVP ---
+        function sendRSVP() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nombresStr = urlParams.get('nombres');
+            const invitado = urlParams.get('invitado');
+            
+            let mensaje = "";
+
+            if (nombresStr) {
+                const nombres = nombresStr.split(',');
+                let confirmados = [], declinados = [], todosRespondidos = true;
+
+                nombres.forEach((nombre, index) => {
+                    const opc = document.querySelector(`input[name="asistencia_${index}"]:checked`);
+                    if (!opc) todosRespondidos = false;
+                    else if (opc.value === 'Sí') confirmados.push(nombre.trim());
+                    else declinados.push(nombre.trim());
+                });
+
+                if (!todosRespondidos) { 
+                    alert("Por favor, selecciona si asiste o no cada persona de la lista."); 
+                    return; 
+                }
+
+                mensaje = `¡Hola Rodrigo y Sofía! Somos la *${invitado || 'Familia'}* y aquí está nuestra confirmación de asistencia:\n\n`;
+                if (confirmados.length > 0) mensaje += `✅ *Asistirán:*\n- ${confirmados.join('\n- ')}\n\n`;
+                if (declinados.length > 0) mensaje += `❌ *No podrán asistir:*\n- ${declinados.join('\n- ')}\n\n`;
+            } else {
+                const nombre = document.getElementById('rsvpNombre').value.trim();
+                const apellido = document.getElementById('rsvpApellido').value.trim();
+                const asistencia = document.getElementById('rsvpAsistencia').value;
+
+                if(!nombre || !apellido || !asistencia) { 
+                    alert("Por favor, completa tu nombre, apellido y estado de asistencia."); 
+                    return; 
+                }
+                
+                mensaje = `Hola Rodrigo y Sofía, soy *${nombre} ${apellido}*.\n\nQuiero confirmar mi respuesta a su boda: *${asistencia}*\n\n`;
+            }
+
+            window.open(`https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+
+        // --- 5. BUENOS DESEOS ---
+        function sendWishes() {
+            const wishes = document.getElementById('wishesText').value.trim();
+            if(!wishes) { 
+                alert("Por favor, escribe un mensaje primero."); 
+                return; 
+            }
+            let mensaje = `¡Hola Rodrigo y Sofía! Les escribo para dejarles mis mejores deseos para su boda:\n\n"${wishes}"`;
+            window.open(`https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+
+        // --- 6. DESCARGAR ICS ---
+        function downloadICS() {
+            const calData = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Boda Rodrigo y Sofía//ES\nBEGIN:VEVENT\nDTSTART:20261121T223000Z\nDTEND:20261122T040000Z\nSUMMARY:Boda de Rodrigo y Sofía\nLOCATION:Hotel Los Cedros Uayamón\nDESCRIPTION:¡Acompáñanos a celebrar nuestra boda!\nEND:VEVENT\nEND:VCALENDAR`;
+            const blob = new Blob([calData], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); 
+            a.href = url;
+            a.download = 'Boda_Rodrigo_y_Sofia.ics'; 
+            document.body.appendChild(a); 
+            a.click(); 
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
